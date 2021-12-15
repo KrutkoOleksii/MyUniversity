@@ -1,12 +1,14 @@
 package ua.goit.schedule.model;
 
-public class Subject implements BaseEntity<Long>{
+public class Audience implements BaseEntity<Long>{
 
     private Long id;
-    private String name;
+
+    private  String name;
 
     @Override
     public Long getId() {
         return id;
     }
+
 }
