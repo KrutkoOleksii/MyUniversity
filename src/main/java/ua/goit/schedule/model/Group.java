@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name="audience")
 public class Group implements BaseEntity<Long>{
 
+    @Id
     @Column(name="id")
     private Long id;
 

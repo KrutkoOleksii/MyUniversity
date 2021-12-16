@@ -1,13 +1,11 @@
 package ua.goit.schedule.model;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name="audience")
 public class Student implements BaseEntity<Long>{
 
+    @Id
     @Column(name="id")
     private Long id;
 
