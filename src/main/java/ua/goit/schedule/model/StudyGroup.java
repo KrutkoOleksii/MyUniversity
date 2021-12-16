@@ -10,8 +10,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="group")
-public class Group implements BaseEntity<Long>{
+@Table(name="study_group")
+public class StudyGroup implements BaseEntity<Long>{
 
     @Id
     @Column(name="id")
@@ -20,7 +20,7 @@ public class Group implements BaseEntity<Long>{
     @Column(name="name")
     private  String name;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "studyGroup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Student> students;
 

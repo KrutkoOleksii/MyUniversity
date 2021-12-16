@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="audience")
+@Table(name="student")
 public class Student implements BaseEntity<Long>{
 
     @Id
@@ -23,8 +23,8 @@ public class Student implements BaseEntity<Long>{
     private  String name;
 
     @ManyToOne
-    @JoinColumn(name="group_id")
-    private  Group group;
+    @JoinColumn(name="study_group_id")
+    private StudyGroup studyGroup;
 
     @Override
     public Long getId() {

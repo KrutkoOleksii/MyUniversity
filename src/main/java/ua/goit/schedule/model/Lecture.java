@@ -24,8 +24,8 @@ public class Lecture implements BaseEntity<Long>{
     private DayOfWeek dayOfWeek;
 
     @ManyToOne
-    @JoinColumn(name="group_id")
-    private  Group group;
+    @JoinColumn(name="study_group_id")
+    private StudyGroup studyGroup;
 
     @ManyToOne
     @JoinColumn(name="subject_id")
