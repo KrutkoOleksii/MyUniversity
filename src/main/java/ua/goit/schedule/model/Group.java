@@ -1,11 +1,16 @@
 package ua.goit.schedule.model;
 
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Table(name="audience")
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name="group")
 public class Group implements BaseEntity<Long>{
 
     @Id

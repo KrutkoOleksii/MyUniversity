@@ -1,10 +1,15 @@
 package ua.goit.schedule.model;
 
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
 @Table(name="audience")
 public class Audience implements BaseEntity<Long>{
 
