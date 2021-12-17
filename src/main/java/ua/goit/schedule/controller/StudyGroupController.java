@@ -17,7 +17,7 @@ public class StudyGroupController {
 
     @GetMapping(value = {"","/"})
     public Collection<StudyGroup> getAll(){
-        return studyGroupService.getAll();
+        return studyGroupService.findAll();
     }
 
     @GetMapping(value = {"/group/{id}"})
