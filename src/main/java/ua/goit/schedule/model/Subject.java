@@ -1,5 +1,6 @@
 package ua.goit.schedule.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"lectures"})
 @Table(name="subject")
 public class Subject implements BaseEntity<Long>{
 
