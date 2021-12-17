@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/groups")
+@RequestMapping(value = "/group")
 public class StudyGroupController {
 
     private final StudyGroupService studyGroupService;
@@ -20,14 +20,19 @@ public class StudyGroupController {
         return studyGroupService.findAll();
     }
 
-    @GetMapping(value = {"/group/{id}"})
+    @GetMapping(value = {"/{id}"})
     public Optional<StudyGroup> getById(@PathVariable Long id){
         return studyGroupService.findById(id);
     }
 
-    @PostMapping(value = {"/group/save"})
-    public StudyGroup save(StudyGroup studyGroup){
+    @PostMapping(value = {"/save"})
+    public StudyGroup save(@RequestBody StudyGroup studyGroup){
         return studyGroupService.save(studyGroup);
+    }
+
+    @DeleteMapping(value = {"/{id}"})
+    public void deleteById(@PathVariable Long id) {
+        studyGroupService.deleteById(id);
     }
 
 }
