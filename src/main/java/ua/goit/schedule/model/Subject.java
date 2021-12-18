@@ -22,9 +22,9 @@ public class Subject implements BaseEntity<Long>{
     @Column(name="name")
     private  String name;
 
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private Set<Lecture> lectures;
+//    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @ToString.Exclude
+//    private Set<DaySchedule> daySchedules;
 
     @Override
     public Long getId() {

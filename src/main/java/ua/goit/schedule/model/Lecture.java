@@ -1,12 +1,10 @@
 package ua.goit.schedule.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,20 +18,17 @@ public class Lecture implements BaseEntity<Long>{
     @Column(name="id")
     private Long id;
 
-    @Column(name="day_of_week")
-    private DayOfWeek dayOfWeek;
-
-    @ManyToOne
-    @JoinColumn(name="study_group_id")
-    private StudyGroup studyGroup;
-
     @ManyToOne
     @JoinColumn(name="subject_id")
-    private  Subject subject;
+    private Subject subject;
 
     @ManyToOne
     @JoinColumn(name="audience_id")
-    private  Audience audience;
+    private Audience audience;
+
+    @ManyToOne
+    @JoinColumn(name="day_schedule_id")
+    private DaySchedule daySchedule;
 
     @Override
     public Long getId() {
