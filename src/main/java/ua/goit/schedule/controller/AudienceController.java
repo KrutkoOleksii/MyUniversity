@@ -15,7 +15,6 @@ public class AudienceController {
 
     private final AudienceService audienceService;
 
-
     @GetMapping(value = {"","/"})
     public Collection<Audience> getAll(){
         return audienceService.findAll();

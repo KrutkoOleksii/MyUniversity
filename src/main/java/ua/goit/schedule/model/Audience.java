@@ -22,13 +22,4 @@ public class Audience implements BaseEntity<Long>{
     @Column(name="name")
     private  String name;
 
-//    @OneToMany(mappedBy = "audience", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<DaySchedule> daySchedules;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
 }

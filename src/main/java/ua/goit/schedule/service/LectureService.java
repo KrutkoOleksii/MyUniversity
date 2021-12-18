@@ -2,7 +2,7 @@ package ua.goit.schedule.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ua.goit.schedule.model.DaySchedule;
+import ua.goit.schedule.model.Lecture;
 import ua.goit.schedule.repository.LectureRepository;
 
 import java.util.Collection;
@@ -10,22 +10,22 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class LectureService implements BaseService<DaySchedule,Long>{
+public class LectureService implements BaseService<Lecture,Long>{
 
     private final LectureRepository lectureRepository;
 
     @Override
-    public Collection<DaySchedule> findAll() {
+    public Collection<Lecture> findAll() {
         return lectureRepository.findAll();
     }
 
     @Override
-    public Optional<DaySchedule> findById(Long id) {
+    public Optional<Lecture> findById(Long id) {
         return lectureRepository.findById(id);
     }
 
     @Override
-    public DaySchedule save(DaySchedule daySchedule) {
+    public Lecture save(Lecture daySchedule) {
         return lectureRepository.save(daySchedule);
     }
 

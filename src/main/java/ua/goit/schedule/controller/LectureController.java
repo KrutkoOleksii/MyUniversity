@@ -2,7 +2,7 @@ package ua.goit.schedule.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ua.goit.schedule.model.DaySchedule;
+import ua.goit.schedule.model.Lecture;
 import ua.goit.schedule.service.LectureService;
 
 import java.util.Collection;
@@ -15,19 +15,18 @@ public class LectureController {
 
     private final LectureService lectureService;
 
-
     @GetMapping(value = {"","/"})
-    public Collection<DaySchedule> getAll(){
+    public Collection<Lecture> getAll(){
         return lectureService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<DaySchedule> getById(@PathVariable Long id){
+    public Optional<Lecture> getById(@PathVariable Long id){
         return lectureService.findById(id);
     }
 
     @PostMapping(value = {"/save"})
-    public DaySchedule save(@RequestBody DaySchedule daySchedule){
+    public Lecture save(@RequestBody Lecture daySchedule){
         return lectureService.save(daySchedule);
     }
 

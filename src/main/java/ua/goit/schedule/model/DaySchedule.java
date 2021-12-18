@@ -22,15 +22,11 @@ public class DaySchedule implements BaseEntity<Long>{
     private DayOfWeek dayOfWeek;
 
     @ManyToOne
-    @JoinColumn(name="study_group_id")
-    private StudyGroup studyGroup;
+    @JoinColumn(name="group_schedule_id")
+    private GroupSchedule groupSchedule;
 
     @OneToMany(mappedBy = "daySchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     private Set<Lecture> lectures;
 
-    @Override
-    public Long getId() {
-        return id;
-    }
 }
