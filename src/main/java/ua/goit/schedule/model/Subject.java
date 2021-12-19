@@ -11,7 +11,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"lectures"})
 @Table(name="subject")
 public class Subject implements BaseEntity<Long>{
 
@@ -21,10 +20,6 @@ public class Subject implements BaseEntity<Long>{
 
     @Column(name="name")
     private  String name;
-
-//    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @ToString.Exclude
-//    private Set<DaySchedule> daySchedules;
 
     @Override
     public Long getId() {

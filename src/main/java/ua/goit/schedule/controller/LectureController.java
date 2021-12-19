@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.goit.schedule.model.Lecture;
 import ua.goit.schedule.service.LectureService;
 
+import java.time.DayOfWeek;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -34,4 +35,10 @@ public class LectureController {
     public void deleteById(@PathVariable Long id) {
         lectureService.deleteById(id);
     }
+
+    @GetMapping(value = {"/day/{dayOfWeekNumber}/student/{studentId}"})
+    public Collection<Lecture> getSchedule(@PathVariable int dayOfWeekNumber, @PathVariable Long studentId){
+        return lectureService.getSchedule(DayOfWeek.of(dayOfWeekNumber), studentId);
+    }
+
 }

@@ -42,9 +42,7 @@ public class DayScheduleService implements BaseService<DaySchedule,Long>{
         dayScheduleRepository.deleteById(id);
     }
 
-    public String getSchedule(int dayOfWeekNumber, Long studentId) {
-        Optional<Student> byId = studentService.findById(studentId);
-        GroupSchedule studyGroup = groupScheduleService.findByStudyGroup(byId.orElseThrow().getStudyGroup().getId());
-        return dayScheduleRepository.getSchedule(dayOfWeekNumber, studyGroup.getId());
+    public DaySchedule getDaySchedule(DayOfWeek dayOfWeekNumber, GroupSchedule groupSchedule) {
+        return dayScheduleRepository.getDaySchedule(dayOfWeekNumber, groupSchedule);
     }
 }

@@ -11,7 +11,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@JsonIgnoreProperties({"lectures"})
 @Table(name="audience")
 public class Audience implements BaseEntity<Long>{
 

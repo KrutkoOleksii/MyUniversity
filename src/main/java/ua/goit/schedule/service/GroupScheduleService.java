@@ -3,6 +3,7 @@ package ua.goit.schedule.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.goit.schedule.model.GroupSchedule;
+import ua.goit.schedule.model.StudyGroup;
 import ua.goit.schedule.repository.GroupScheduleRepository;
 
 import java.util.Collection;
@@ -34,7 +35,7 @@ public class GroupScheduleService implements BaseService<GroupSchedule,Long>{
         groupScheduleRepository.deleteById(id);
     }
 
-    public GroupSchedule findByStudyGroup(Long studyGroupId){
-        return groupScheduleRepository.findByStudyGroup(studyGroupId);
+    public GroupSchedule findByStudyGroup(StudyGroup studyGroup){
+        return groupScheduleRepository.findByStudyGroup(studyGroup);
     }
 }

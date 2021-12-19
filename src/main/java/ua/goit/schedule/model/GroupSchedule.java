@@ -1,9 +1,7 @@
 package ua.goit.schedule.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"daySchedules"})
 @Table(name="group_schedule")
 public class GroupSchedule implements BaseEntity<Long>{
 
@@ -25,5 +24,6 @@ public class GroupSchedule implements BaseEntity<Long>{
     private StudyGroup studyGroup;
 
     @OneToMany(mappedBy = "groupSchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Set<DaySchedule> daySchedules;
 }
