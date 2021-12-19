@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="groupSchedule")
+@Table(name="group_schedule")
 public class GroupSchedule implements BaseEntity<Long>{
 
     @Id
@@ -24,6 +24,6 @@ public class GroupSchedule implements BaseEntity<Long>{
     @JoinColumn(name="study_group_id")
     private StudyGroup studyGroup;
 
-    @OneToMany
+    @OneToMany(mappedBy = "groupSchedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<DaySchedule> daySchedules;
 }
