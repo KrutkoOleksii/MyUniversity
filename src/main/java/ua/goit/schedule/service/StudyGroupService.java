@@ -34,14 +34,4 @@ public class StudyGroupService implements BaseService<StudyGroup,Long>{
         studyGroupRepository.deleteById(id);
     }
 
-//    public StudyGroup add(StudyGroup studyGroup){
-//        if (studyGroupRepository.existsById(studyGroup.getId())) return update(studyGroup);
-//        return save(studyGroup);
-//    }
-//
-//    public StudyGroup update(StudyGroup studyGroup){
-//        if (studyGroupRepository.existsById(studyGroup.getId())) return save(studyGroup);
-//        return
-//    }
-
 }

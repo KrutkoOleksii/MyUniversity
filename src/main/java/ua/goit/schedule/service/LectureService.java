@@ -2,7 +2,8 @@ package ua.goit.schedule.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ua.goit.schedule.model.*;
+import ua.goit.schedule.model.Lecture;
+import ua.goit.schedule.model.Student;
 import ua.goit.schedule.repository.LectureRepository;
 
 import java.time.DayOfWeek;
@@ -39,13 +40,10 @@ public class LectureService implements BaseService<Lecture,Long>{
     }
 
     public Collection<Lecture> getSchedule(DayOfWeek dayOfWeek, Long studentId) {
-        Optional<Student> byId = studentService.findById(studentId);
-        Student student = byId.orElseThrow();
-        StudyGroup studyGroup = student.getStudyGroup();
-        GroupSchedule groupSchedule = groupScheduleService.findByStudyGroup(studyGroup);
-        DaySchedule daySchedule = dayScheduleService.getDaySchedule(dayOfWeek, groupSchedule);
-
-        return lectureRepository.findByDaySchedule(daySchedule);
+        Student student = studentService.findById(studentId).orElseThrow();
+        return lectureRepository.findByDaySchedule(
+                        dayScheduleService.getDaySchedule(dayOfWeek,
+                        groupScheduleService.findByStudyGroup(student.getStudyGroup())));
     }
 
 }
