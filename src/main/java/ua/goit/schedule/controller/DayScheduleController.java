@@ -3,10 +3,8 @@ package ua.goit.schedule.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ua.goit.schedule.model.DaySchedule;
-import ua.goit.schedule.model.Student;
 import ua.goit.schedule.service.DayScheduleService;
 
-import java.time.DayOfWeek;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -37,8 +35,4 @@ public class DayScheduleController {
         dayScheduleService.deleteById(id);
     }
 
-//    @GetMapping(value = {"/day/{dayOfWeekNumber}/student/{studentId}"})
-//    public DaySchedule getSchedule(@PathVariable int dayOfWeekNumber, @PathVariable Long studentId){
-//        return dayScheduleService.getSchedule(DayOfWeek.of(dayOfWeekNumber), studentId);
-//    }
 }

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ua.goit.schedule.model.GroupSchedule;
 import ua.goit.schedule.service.GroupScheduleService;
 
-import java.time.DayOfWeek;
 import java.util.Collection;
 import java.util.Optional;
 
