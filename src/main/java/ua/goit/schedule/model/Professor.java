@@ -1,6 +1,5 @@
 package ua.goit.schedule.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +12,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name="student")
-public class Student implements BaseEntity<Long>{
+@Table(name="professor")
+public class Professor implements BaseEntity<Long>{
 
     @Id
     @Column(name="id")
@@ -23,9 +22,5 @@ public class Student implements BaseEntity<Long>{
     @OneToOne
     @JoinColumn(name="person_id")
     private  Person person;
-
-    @ManyToOne
-    @JoinColumn(name="study_group_id")
-    private StudyGroup studyGroup;
 
 }

@@ -27,6 +27,10 @@ public class Lecture implements BaseEntity<Long>{
     private Audience audience;
 
     @ManyToOne
+    @JoinColumn(name="professor_id")
+    private Professor professor;
+
+    @ManyToOne
     @JoinColumn(name="day_schedule_id")
     private DaySchedule daySchedule;
 
