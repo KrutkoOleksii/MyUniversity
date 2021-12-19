@@ -16,12 +16,12 @@ public class StudyGroupController {
     private final StudyGroupService studyGroupService;
 
     @GetMapping(value = {"","/"})
-    public Collection<StudyGroup> getAll(){
+    public Collection<StudyGroup> findAll(){
         return studyGroupService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<StudyGroup> getById(@PathVariable Long id){
+    public Optional<StudyGroup> findById(@PathVariable Long id){
         return studyGroupService.findById(id);
     }
 

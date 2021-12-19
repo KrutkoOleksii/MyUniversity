@@ -15,14 +15,13 @@ public class SubjectController {
 
     private final SubjectService subjectService;
 
-
     @GetMapping(value = {"","/"})
-    public Collection<Subject> getAll(){
+    public Collection<Subject> findAll(){
         return subjectService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Subject> getById(@PathVariable Long id){
+    public Optional<Subject> findById(@PathVariable Long id){
         return subjectService.findById(id);
     }
 

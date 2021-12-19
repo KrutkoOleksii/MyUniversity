@@ -16,12 +16,12 @@ public class LectureController {
     private final LectureService lectureService;
 
     @GetMapping(value = {"","/"})
-    public Collection<Lecture> getAll(){
+    public Collection<Lecture> findAll(){
         return lectureService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Lecture> getById(@PathVariable Long id){
+    public Optional<Lecture> findById(@PathVariable Long id){
         return lectureService.findById(id);
     }
 

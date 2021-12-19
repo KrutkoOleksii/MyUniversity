@@ -15,14 +15,13 @@ public class PersonController {
 
     private final PersonService personService;
 
-
     @GetMapping(value = {"","/"})
-    public Collection<Person> getAll(){
+    public Collection<Person> findAll(){
         return personService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Person> getById(@PathVariable Long id){
+    public Optional<Person> findById(@PathVariable Long id){
         return personService.findById(id);
     }
 

@@ -33,4 +33,8 @@ public class GroupScheduleService implements BaseService<GroupSchedule,Long>{
     public void deleteById(Long id) {
         groupScheduleRepository.deleteById(id);
     }
+
+    public GroupSchedule findByStudyGroup(Long studyGroupId){
+        return groupScheduleRepository.findByStudyGroup(studyGroupId);
+    }
 }

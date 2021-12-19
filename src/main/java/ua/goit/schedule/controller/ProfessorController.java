@@ -15,14 +15,13 @@ public class ProfessorController {
 
     private final ProfessorService professorService;
 
-
     @GetMapping(value = {"","/"})
-    public Collection<Professor> getAll(){
+    public Collection<Professor> findAll(){
         return professorService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Professor> getById(@PathVariable Long id){
+    public Optional<Professor> findById(@PathVariable Long id){
         return professorService.findById(id);
     }
 

@@ -16,12 +16,12 @@ public class AudienceController {
     private final AudienceService audienceService;
 
     @GetMapping(value = {"","/"})
-    public Collection<Audience> getAll(){
+    public Collection<Audience> findAll(){
         return audienceService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Audience> getById(@PathVariable Long id){
+    public Optional<Audience> findById(@PathVariable Long id){
         return audienceService.findById(id);
     }
 

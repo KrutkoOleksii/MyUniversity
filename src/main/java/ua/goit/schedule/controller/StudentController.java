@@ -15,14 +15,13 @@ public class StudentController {
 
     private final StudentService studentService;
 
-
     @GetMapping(value = {"","/"})
-    public Collection<Student> getAll(){
+    public Collection<Student> findAll(){
         return studentService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
-    public Optional<Student> getById(@PathVariable Long id){
+    public Optional<Student> findById(@PathVariable Long id){
         return studentService.findById(id);
     }
 
