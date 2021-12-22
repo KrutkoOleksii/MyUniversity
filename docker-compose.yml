@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+
+    ports:
+      - "5434:5432"
+    environment:
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=1234567
+      - POSTGRES_DB=univerdb
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+  app:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    environment:
+      - PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/univerdb
+    image: schedule
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+volumes:
+  db-data:
