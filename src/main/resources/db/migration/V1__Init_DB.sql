@@ -1,15 +1,3 @@
---CREATE DATABASE postgres
---    WITH
---    OWNER = postgres
---    ENCODING = 'UTF8'
---    LC_COLLATE = 'C'
---    LC_CTYPE = 'C'
---    TABLESPACE = pg_default
---    CONNECTION LIMIT = -1;
---
---COMMENT ON DATABASE postgres
---    IS 'default administrative connection database';
-
 -- SCHEMA: schedule
 -- DROP SCHEMA IF EXISTS schedule ;
 CREATE SCHEMA IF NOT EXISTS schedule
@@ -22,7 +10,7 @@ CREATE TABLE IF NOT EXISTS schedule.audience
     id bigint NOT NULL,
     name character varying(255),
     CONSTRAINT audience_pkey PRIMARY KEY (id)
-)
+);
 
 -- Table: schedule.person
 -- DROP TABLE IF EXISTS schedule.person;
@@ -32,7 +20,7 @@ CREATE TABLE IF NOT EXISTS schedule.person
     name character varying(255),
     surname character varying(255),
     CONSTRAINT person_pkey PRIMARY KEY (id)
-)
+);
 
 -- Table: schedule.study_group
 -- DROP TABLE IF EXISTS schedule.study_group;
@@ -41,7 +29,7 @@ CREATE TABLE IF NOT EXISTS schedule.study_group
     id bigint NOT NULL,
     name character varying(255) COLLATE pg_catalog."default",
     CONSTRAINT study_group_pkey PRIMARY KEY (id)
-)
+);
 
 -- Table: schedule.subject
 -- DROP TABLE IF EXISTS schedule.subject;
@@ -50,7 +38,7 @@ CREATE TABLE IF NOT EXISTS schedule.subject
     id bigint NOT NULL,
     name character varying(255),
     CONSTRAINT subject_pkey PRIMARY KEY (id)
-)
+);
 
 -- Table: schedule.group_schedule
 -- DROP TABLE IF EXISTS schedule.group_schedule;
@@ -63,7 +51,7 @@ CREATE TABLE IF NOT EXISTS schedule.group_schedule
         REFERENCES schedule.study_group (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 -- Table: schedule.professor
 -- DROP TABLE IF EXISTS schedule.professor;
@@ -76,7 +64,7 @@ CREATE TABLE IF NOT EXISTS schedule.professor
         REFERENCES schedule.person (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 -- Table: schedule.student
 
@@ -96,7 +84,7 @@ CREATE TABLE IF NOT EXISTS schedule.student
         REFERENCES schedule.person (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 -- Table: schedule.day_schedule
 -- DROP TABLE IF EXISTS schedule.day_schedule;
@@ -110,7 +98,7 @@ CREATE TABLE IF NOT EXISTS schedule.day_schedule
         REFERENCES schedule.group_schedule (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 -- Table: schedule.lecture
 -- DROP TABLE IF EXISTS schedule.lecture;
@@ -138,5 +126,5 @@ CREATE TABLE IF NOT EXISTS schedule.lecture
         REFERENCES schedule.audience (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
