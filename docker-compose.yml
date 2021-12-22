@@ -9,6 +9,7 @@ services:
     environment:
       - DB_USERNAME=postgres
       - DB_PASSWORD=123456789
+      - DB_URL=jdbc:postgresql://db/univerdb
       - POSTGRES_DB=univerdb
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
@@ -20,7 +21,6 @@ services:
       dockerfile: Dockerfile.development
     environment:
       - PORT=8080
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/univerdb
     image: schedule
     ports:
       - 8080:8080
