@@ -9,22 +9,18 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456789
       - POSTGRES_DB=schedule
-#      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - "db-data:/var/lib/postgresql/data"
 
   app:
     container_name: app
-    build:
-      context: services/app
-      dockerfile: Dockerfile.development
+    build: .
     environment:
       - PORT=8080
       - DB_USERNAME=postgres
       - DB_PASSWORD=123456789
       - DB_URL=jdbc:postgresql://db/schedule
       - POSTGRES_DB=schedule
-    image: 'appschedule:latest'
     ports:
       - 8080:8080
     depends_on:
