@@ -3,35 +3,35 @@ package ua.goit.schedule.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.goit.schedule.model.Person;
-import ua.goit.schedule.repository.PersonRepository;
+import ua.goit.schedule.repository.PeopleRepository;
 
 import java.util.Collection;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PersonService implements BaseService<Person,Long>{
+public class PeopleService implements BaseService<Person,Long>{
 
-    private final PersonRepository personRepository;
+    private final PeopleRepository peopleRepository;
 
     @Override
     public Collection<Person> findAll() {
-        return personRepository.findAll();
+        return peopleRepository.findAll();
     }
 
     @Override
     public Optional<Person> findById(Long id) {
-        return personRepository.findById(id);
+        return peopleRepository.findById(id);
     }
 
     @Override
     public Person save(Person person) {
-        return personRepository.save(person);
+        return peopleRepository.save(person);
     }
 
     @Override
     public void deleteById(Long id) {
-        personRepository.deleteById(id);
+        peopleRepository.deleteById(id);
     }
 
 }

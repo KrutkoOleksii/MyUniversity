@@ -17,22 +17,22 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.Subject;
-import ua.goit.schedule.repository.SubjectRepository;
+import ua.goit.schedule.repository.SubjectsRepository;
 
-@ContextConfiguration(classes = {SubjectService.class})
+@ContextConfiguration(classes = {SubjectsService.class})
 @ExtendWith(SpringExtension.class)
-class SubjectServiceTest {
+class SubjectsServiceTest {
     @MockBean
-    private SubjectRepository subjectRepository;
+    private SubjectsRepository subjectsRepository;
 
     @Autowired
-    private SubjectService subjectService;
+    private SubjectsService subjectsService;
 
     @Test
     void testFindAll() {
-        when(this.subjectRepository.findAll()).thenReturn(null);
-        assertNull(this.subjectService.findAll());
-        verify(this.subjectRepository).findAll();
+        when(this.subjectsRepository.findAll()).thenReturn(null);
+        assertNull(this.subjectsService.findAll());
+        verify(this.subjectsRepository).findAll();
     }
 
     @Test
@@ -41,12 +41,12 @@ class SubjectServiceTest {
         subject.setId(123L);
         subject.setName("Name");
         Optional<Subject> ofResult = Optional.of(subject);
-        when(this.subjectRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<Subject> actualFindByIdResult = this.subjectService.findById(123L);
+        when(this.subjectsRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<Subject> actualFindByIdResult = this.subjectsService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.subjectRepository).findById((Long) any());
-        assertTrue(this.subjectService.findAll().isEmpty());
+        verify(this.subjectsRepository).findById((Long) any());
+        assertTrue(this.subjectsService.findAll().isEmpty());
     }
 
     @Test
@@ -54,22 +54,22 @@ class SubjectServiceTest {
         Subject subject = new Subject();
         subject.setId(123L);
         subject.setName("Name");
-        when(this.subjectRepository.save((Subject) any())).thenReturn(subject);
+        when(this.subjectsRepository.save((Subject) any())).thenReturn(subject);
 
         Subject subject1 = new Subject();
         subject1.setId(123L);
         subject1.setName("Name");
-        assertSame(subject, this.subjectService.save(subject1));
-        verify(this.subjectRepository).save((Subject) any());
-        assertTrue(this.subjectService.findAll().isEmpty());
+        assertSame(subject, this.subjectsService.save(subject1));
+        verify(this.subjectsRepository).save((Subject) any());
+        assertTrue(this.subjectsService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.subjectRepository).deleteById((Long) any());
-        this.subjectService.deleteById(123L);
-        verify(this.subjectRepository).deleteById((Long) any());
-        assertTrue(this.subjectService.findAll().isEmpty());
+        doNothing().when(this.subjectsRepository).deleteById((Long) any());
+        this.subjectsService.deleteById(123L);
+        verify(this.subjectsRepository).deleteById((Long) any());
+        assertTrue(this.subjectsService.findAll().isEmpty());
     }
 }
 

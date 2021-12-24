@@ -7,7 +7,7 @@ import ua.goit.schedule.model.GroupSchedule;
 
 import java.time.DayOfWeek;
 
-public interface DayScheduleRepository extends JpaRepository<DaySchedule,Long> {
+public interface DaySchedulesRepository extends JpaRepository<DaySchedule,Long> {
 
     @Query("SELECT c FROM DaySchedule c WHERE (c.dayOfWeek=?1 AND c.groupSchedule=?2)")
     DaySchedule getDaySchedule(DayOfWeek dayOfWeek, GroupSchedule groupSchedule);

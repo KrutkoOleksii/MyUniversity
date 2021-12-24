@@ -19,22 +19,22 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.Person;
 import ua.goit.schedule.model.Student;
 import ua.goit.schedule.model.StudyGroup;
-import ua.goit.schedule.repository.StudentRepository;
+import ua.goit.schedule.repository.StudentsRepository;
 
-@ContextConfiguration(classes = {StudentService.class})
+@ContextConfiguration(classes = {StudentsService.class})
 @ExtendWith(SpringExtension.class)
-class StudentServiceTest {
+class StudentsServiceTest {
     @MockBean
-    private StudentRepository studentRepository;
+    private StudentsRepository studentsRepository;
 
     @Autowired
-    private StudentService studentService;
+    private StudentsService studentsService;
 
     @Test
     void testFindAll() {
-        when(this.studentRepository.findAll()).thenReturn(null);
-        assertNull(this.studentService.findAll());
-        verify(this.studentRepository).findAll();
+        when(this.studentsRepository.findAll()).thenReturn(null);
+        assertNull(this.studentsService.findAll());
+        verify(this.studentsRepository).findAll();
     }
 
     @Test
@@ -54,12 +54,12 @@ class StudentServiceTest {
         student.setPerson(person);
         student.setStudyGroup(studyGroup);
         Optional<Student> ofResult = Optional.of(student);
-        when(this.studentRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<Student> actualFindByIdResult = this.studentService.findById(123L);
+        when(this.studentsRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<Student> actualFindByIdResult = this.studentsService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.studentRepository).findById((Long) any());
-        assertTrue(this.studentService.findAll().isEmpty());
+        verify(this.studentsRepository).findById((Long) any());
+        assertTrue(this.studentsService.findAll().isEmpty());
     }
 
     @Test
@@ -78,7 +78,7 @@ class StudentServiceTest {
         student.setId(123L);
         student.setPerson(person);
         student.setStudyGroup(studyGroup);
-        when(this.studentRepository.save((Student) any())).thenReturn(student);
+        when(this.studentsRepository.save((Student) any())).thenReturn(student);
 
         Person person1 = new Person();
         person1.setId(123L);
@@ -94,17 +94,17 @@ class StudentServiceTest {
         student1.setId(123L);
         student1.setPerson(person1);
         student1.setStudyGroup(studyGroup1);
-        assertSame(student, this.studentService.save(student1));
-        verify(this.studentRepository).save((Student) any());
-        assertTrue(this.studentService.findAll().isEmpty());
+        assertSame(student, this.studentsService.save(student1));
+        verify(this.studentsRepository).save((Student) any());
+        assertTrue(this.studentsService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.studentRepository).deleteById((Long) any());
-        this.studentService.deleteById(123L);
-        verify(this.studentRepository).deleteById((Long) any());
-        assertTrue(this.studentService.findAll().isEmpty());
+        doNothing().when(this.studentsRepository).deleteById((Long) any());
+        this.studentsService.deleteById(123L);
+        verify(this.studentsRepository).deleteById((Long) any());
+        assertTrue(this.studentsService.findAll().isEmpty());
     }
 }
 

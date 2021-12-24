@@ -26,31 +26,31 @@ import ua.goit.schedule.model.Professor;
 import ua.goit.schedule.model.Student;
 import ua.goit.schedule.model.StudyGroup;
 import ua.goit.schedule.model.Subject;
-import ua.goit.schedule.repository.LectureRepository;
+import ua.goit.schedule.repository.LecturesRepository;
 
-@ContextConfiguration(classes = {LectureService.class})
+@ContextConfiguration(classes = {LecturesService.class})
 @ExtendWith(SpringExtension.class)
-class LectureServiceTest {
+class LecturesServiceTest {
     @MockBean
-    private DayScheduleService dayScheduleService;
+    private DaySchedulesService daySchedulesService;
 
     @MockBean
-    private GroupScheduleService groupScheduleService;
+    private GroupSchedulesService groupSchedulesService;
 
     @MockBean
-    private LectureRepository lectureRepository;
+    private LecturesRepository lecturesRepository;
 
     @Autowired
-    private LectureService lectureService;
+    private LecturesService lecturesService;
 
     @MockBean
-    private StudentService studentService;
+    private StudentsService studentsService;
 
     @Test
     void testFindAll() {
-        when(this.lectureRepository.findAll()).thenReturn(null);
-        assertNull(this.lectureService.findAll());
-        verify(this.lectureRepository).findAll();
+        when(this.lecturesRepository.findAll()).thenReturn(null);
+        assertNull(this.lecturesService.findAll());
+        verify(this.lecturesRepository).findAll();
     }
 
     @Test
@@ -95,12 +95,12 @@ class LectureServiceTest {
         lecture.setProfessor(professor);
         lecture.setSubject(subject);
         Optional<Lecture> ofResult = Optional.of(lecture);
-        when(this.lectureRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<Lecture> actualFindByIdResult = this.lectureService.findById(123L);
+        when(this.lecturesRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<Lecture> actualFindByIdResult = this.lecturesService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.lectureRepository).findById((Long) any());
-        assertTrue(this.lectureService.findAll().isEmpty());
+        verify(this.lecturesRepository).findById((Long) any());
+        assertTrue(this.lecturesService.findAll().isEmpty());
     }
 
     @Test
@@ -144,7 +144,7 @@ class LectureServiceTest {
         lecture.setId(123L);
         lecture.setProfessor(professor);
         lecture.setSubject(subject);
-        when(this.lectureRepository.save((Lecture) any())).thenReturn(lecture);
+        when(this.lecturesRepository.save((Lecture) any())).thenReturn(lecture);
 
         Audience audience1 = new Audience();
         audience1.setId(123L);
@@ -185,16 +185,16 @@ class LectureServiceTest {
         lecture1.setId(123L);
         lecture1.setProfessor(professor1);
         lecture1.setSubject(subject1);
-        assertSame(lecture, this.lectureService.save(lecture1));
-        verify(this.lectureRepository).save((Lecture) any());
+        assertSame(lecture, this.lecturesService.save(lecture1));
+        verify(this.lecturesRepository).save((Lecture) any());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.lectureRepository).deleteById((Long) any());
-        this.lectureService.deleteById(123L);
-        verify(this.lectureRepository).deleteById((Long) any());
-        assertTrue(this.lectureService.findAll().isEmpty());
+        doNothing().when(this.lecturesRepository).deleteById((Long) any());
+        this.lecturesService.deleteById(123L);
+        verify(this.lecturesRepository).deleteById((Long) any());
+        assertTrue(this.lecturesService.findAll().isEmpty());
     }
 
     @Test
@@ -214,8 +214,8 @@ class LectureServiceTest {
         student.setPerson(person);
         student.setStudyGroup(studyGroup);
         Optional<Student> ofResult = Optional.of(student);
-        when(this.studentService.findById((Long) any())).thenReturn(ofResult);
-        when(this.lectureRepository.findByDaySchedule((DaySchedule) any())).thenReturn(null);
+        when(this.studentsService.findById((Long) any())).thenReturn(ofResult);
+        when(this.lecturesRepository.findByDaySchedule((DaySchedule) any())).thenReturn(null);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
@@ -226,7 +226,7 @@ class LectureServiceTest {
         groupSchedule.setDaySchedules(null);
         groupSchedule.setId(123L);
         groupSchedule.setStudyGroup(studyGroup1);
-        when(this.groupScheduleService.findByStudyGroup((StudyGroup) any())).thenReturn(groupSchedule);
+        when(this.groupSchedulesService.findByStudyGroup((StudyGroup) any())).thenReturn(groupSchedule);
 
         StudyGroup studyGroup2 = new StudyGroup();
         studyGroup2.setId(123L);
@@ -243,13 +243,13 @@ class LectureServiceTest {
         daySchedule.setGroupSchedule(groupSchedule1);
         daySchedule.setId(123L);
         daySchedule.setLectures(null);
-        when(this.dayScheduleService.getDaySchedule((DayOfWeek) any(), (GroupSchedule) any())).thenReturn(daySchedule);
-        assertNull(this.lectureService.getSchedule(DayOfWeek.MONDAY, 123L));
-        verify(this.studentService).findById((Long) any());
-        verify(this.lectureRepository).findByDaySchedule((DaySchedule) any());
-        verify(this.groupScheduleService).findByStudyGroup((StudyGroup) any());
-        verify(this.dayScheduleService).getDaySchedule((DayOfWeek) any(), (GroupSchedule) any());
-        assertTrue(this.lectureService.findAll().isEmpty());
+        when(this.daySchedulesService.getDaySchedule((DayOfWeek) any(), (GroupSchedule) any())).thenReturn(daySchedule);
+        assertNull(this.lecturesService.getSchedule(DayOfWeek.MONDAY, 123L));
+        verify(this.studentsService).findById((Long) any());
+        verify(this.lecturesRepository).findByDaySchedule((DaySchedule) any());
+        verify(this.groupSchedulesService).findByStudyGroup((StudyGroup) any());
+        verify(this.daySchedulesService).getDaySchedule((DayOfWeek) any(), (GroupSchedule) any());
+        assertTrue(this.lecturesService.findAll().isEmpty());
     }
 }
 

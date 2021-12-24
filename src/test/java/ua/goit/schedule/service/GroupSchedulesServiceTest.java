@@ -18,22 +18,22 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.GroupSchedule;
 import ua.goit.schedule.model.StudyGroup;
-import ua.goit.schedule.repository.GroupScheduleRepository;
+import ua.goit.schedule.repository.GroupSchedulesRepository;
 
-@ContextConfiguration(classes = {GroupScheduleService.class})
+@ContextConfiguration(classes = {GroupSchedulesService.class})
 @ExtendWith(SpringExtension.class)
-class GroupScheduleServiceTest {
+class GroupSchedulesServiceTest {
     @MockBean
-    private GroupScheduleRepository groupScheduleRepository;
+    private GroupSchedulesRepository groupSchedulesRepository;
 
     @Autowired
-    private GroupScheduleService groupScheduleService;
+    private GroupSchedulesService groupSchedulesService;
 
     @Test
     void testFindAll() {
-        when(this.groupScheduleRepository.findAll()).thenReturn(null);
-        assertNull(this.groupScheduleService.findAll());
-        verify(this.groupScheduleRepository).findAll();
+        when(this.groupSchedulesRepository.findAll()).thenReturn(null);
+        assertNull(this.groupSchedulesService.findAll());
+        verify(this.groupSchedulesRepository).findAll();
     }
 
     @Test
@@ -48,12 +48,12 @@ class GroupScheduleServiceTest {
         groupSchedule.setId(123L);
         groupSchedule.setStudyGroup(studyGroup);
         Optional<GroupSchedule> ofResult = Optional.of(groupSchedule);
-        when(this.groupScheduleRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<GroupSchedule> actualFindByIdResult = this.groupScheduleService.findById(123L);
+        when(this.groupSchedulesRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<GroupSchedule> actualFindByIdResult = this.groupSchedulesService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.groupScheduleRepository).findById((Long) any());
-        assertTrue(this.groupScheduleService.findAll().isEmpty());
+        verify(this.groupSchedulesRepository).findById((Long) any());
+        assertTrue(this.groupSchedulesService.findAll().isEmpty());
     }
 
     @Test
@@ -67,7 +67,7 @@ class GroupScheduleServiceTest {
         groupSchedule.setDaySchedules(null);
         groupSchedule.setId(123L);
         groupSchedule.setStudyGroup(studyGroup);
-        when(this.groupScheduleRepository.save((GroupSchedule) any())).thenReturn(groupSchedule);
+        when(this.groupSchedulesRepository.save((GroupSchedule) any())).thenReturn(groupSchedule);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
@@ -78,17 +78,17 @@ class GroupScheduleServiceTest {
         groupSchedule1.setDaySchedules(null);
         groupSchedule1.setId(123L);
         groupSchedule1.setStudyGroup(studyGroup1);
-        assertSame(groupSchedule, this.groupScheduleService.save(groupSchedule1));
-        verify(this.groupScheduleRepository).save((GroupSchedule) any());
-        assertTrue(this.groupScheduleService.findAll().isEmpty());
+        assertSame(groupSchedule, this.groupSchedulesService.save(groupSchedule1));
+        verify(this.groupSchedulesRepository).save((GroupSchedule) any());
+        assertTrue(this.groupSchedulesService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.groupScheduleRepository).deleteById((Long) any());
-        this.groupScheduleService.deleteById(123L);
-        verify(this.groupScheduleRepository).deleteById((Long) any());
-        assertTrue(this.groupScheduleService.findAll().isEmpty());
+        doNothing().when(this.groupSchedulesRepository).deleteById((Long) any());
+        this.groupSchedulesService.deleteById(123L);
+        verify(this.groupSchedulesRepository).deleteById((Long) any());
+        assertTrue(this.groupSchedulesService.findAll().isEmpty());
     }
 
     @Test
@@ -102,15 +102,15 @@ class GroupScheduleServiceTest {
         groupSchedule.setDaySchedules(null);
         groupSchedule.setId(123L);
         groupSchedule.setStudyGroup(studyGroup);
-        when(this.groupScheduleRepository.findByStudyGroup((StudyGroup) any())).thenReturn(groupSchedule);
+        when(this.groupSchedulesRepository.findByStudyGroup((StudyGroup) any())).thenReturn(groupSchedule);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
         studyGroup1.setName("Name");
         studyGroup1.setStudents(null);
-        assertSame(groupSchedule, this.groupScheduleService.findByStudyGroup(studyGroup1));
-        verify(this.groupScheduleRepository).findByStudyGroup((StudyGroup) any());
-        assertTrue(this.groupScheduleService.findAll().isEmpty());
+        assertSame(groupSchedule, this.groupSchedulesService.findByStudyGroup(studyGroup1));
+        verify(this.groupSchedulesRepository).findByStudyGroup((StudyGroup) any());
+        assertTrue(this.groupSchedulesService.findAll().isEmpty());
     }
 }
 

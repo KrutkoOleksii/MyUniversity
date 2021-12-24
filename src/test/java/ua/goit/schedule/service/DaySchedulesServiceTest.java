@@ -20,22 +20,22 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.DaySchedule;
 import ua.goit.schedule.model.GroupSchedule;
 import ua.goit.schedule.model.StudyGroup;
-import ua.goit.schedule.repository.DayScheduleRepository;
+import ua.goit.schedule.repository.DaySchedulesRepository;
 
-@ContextConfiguration(classes = {DayScheduleService.class})
+@ContextConfiguration(classes = {DaySchedulesService.class})
 @ExtendWith(SpringExtension.class)
-class DayScheduleServiceTest {
+class DaySchedulesServiceTest {
     @MockBean
-    private DayScheduleRepository dayScheduleRepository;
+    private DaySchedulesRepository daySchedulesRepository;
 
     @Autowired
-    private DayScheduleService dayScheduleService;
+    private DaySchedulesService daySchedulesService;
 
     @Test
     void testFindAll() {
-        when(this.dayScheduleRepository.findAll()).thenReturn(null);
-        assertNull(this.dayScheduleService.findAll());
-        verify(this.dayScheduleRepository).findAll();
+        when(this.daySchedulesRepository.findAll()).thenReturn(null);
+        assertNull(this.daySchedulesService.findAll());
+        verify(this.daySchedulesRepository).findAll();
     }
 
     @Test
@@ -56,12 +56,12 @@ class DayScheduleServiceTest {
         daySchedule.setId(123L);
         daySchedule.setLectures(null);
         Optional<DaySchedule> ofResult = Optional.of(daySchedule);
-        when(this.dayScheduleRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<DaySchedule> actualFindByIdResult = this.dayScheduleService.findById(123L);
+        when(this.daySchedulesRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<DaySchedule> actualFindByIdResult = this.daySchedulesService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.dayScheduleRepository).findById((Long) any());
-        assertTrue(this.dayScheduleService.findAll().isEmpty());
+        verify(this.daySchedulesRepository).findById((Long) any());
+        assertTrue(this.daySchedulesService.findAll().isEmpty());
     }
 
     @Test
@@ -81,7 +81,7 @@ class DayScheduleServiceTest {
         daySchedule.setGroupSchedule(groupSchedule);
         daySchedule.setId(123L);
         daySchedule.setLectures(null);
-        when(this.dayScheduleRepository.save((DaySchedule) any())).thenReturn(daySchedule);
+        when(this.daySchedulesRepository.save((DaySchedule) any())).thenReturn(daySchedule);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
@@ -98,17 +98,17 @@ class DayScheduleServiceTest {
         daySchedule1.setGroupSchedule(groupSchedule1);
         daySchedule1.setId(123L);
         daySchedule1.setLectures(null);
-        assertSame(daySchedule, this.dayScheduleService.save(daySchedule1));
-        verify(this.dayScheduleRepository).save((DaySchedule) any());
-        assertTrue(this.dayScheduleService.findAll().isEmpty());
+        assertSame(daySchedule, this.daySchedulesService.save(daySchedule1));
+        verify(this.daySchedulesRepository).save((DaySchedule) any());
+        assertTrue(this.daySchedulesService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.dayScheduleRepository).deleteById((Long) any());
-        this.dayScheduleService.deleteById(123L);
-        verify(this.dayScheduleRepository).deleteById((Long) any());
-        assertTrue(this.dayScheduleService.findAll().isEmpty());
+        doNothing().when(this.daySchedulesRepository).deleteById((Long) any());
+        this.daySchedulesService.deleteById(123L);
+        verify(this.daySchedulesRepository).deleteById((Long) any());
+        assertTrue(this.daySchedulesService.findAll().isEmpty());
     }
 
     @Test
@@ -128,7 +128,7 @@ class DayScheduleServiceTest {
         daySchedule.setGroupSchedule(groupSchedule);
         daySchedule.setId(123L);
         daySchedule.setLectures(null);
-        when(this.dayScheduleRepository.getDaySchedule((DayOfWeek) any(), (GroupSchedule) any())).thenReturn(daySchedule);
+        when(this.daySchedulesRepository.getDaySchedule((DayOfWeek) any(), (GroupSchedule) any())).thenReturn(daySchedule);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
@@ -139,9 +139,9 @@ class DayScheduleServiceTest {
         groupSchedule1.setDaySchedules(null);
         groupSchedule1.setId(123L);
         groupSchedule1.setStudyGroup(studyGroup1);
-        assertSame(daySchedule, this.dayScheduleService.getDaySchedule(DayOfWeek.MONDAY, groupSchedule1));
-        verify(this.dayScheduleRepository).getDaySchedule((DayOfWeek) any(), (GroupSchedule) any());
-        assertTrue(this.dayScheduleService.findAll().isEmpty());
+        assertSame(daySchedule, this.daySchedulesService.getDaySchedule(DayOfWeek.MONDAY, groupSchedule1));
+        verify(this.daySchedulesRepository).getDaySchedule((DayOfWeek) any(), (GroupSchedule) any());
+        assertTrue(this.daySchedulesService.findAll().isEmpty());
     }
 }
 

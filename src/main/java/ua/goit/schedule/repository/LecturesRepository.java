@@ -7,7 +7,7 @@ import ua.goit.schedule.model.Lecture;
 
 import java.util.Collection;
 
-public interface LectureRepository extends JpaRepository<Lecture,Long> {
+public interface LecturesRepository extends JpaRepository<Lecture,Long> {
 
     @Query("SELECT c FROM Lecture c WHERE (c.daySchedule=?1)")
     Collection<Lecture> findByDaySchedule(DaySchedule daySchedule);

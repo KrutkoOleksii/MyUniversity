@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.goit.schedule.model.DaySchedule;
 import ua.goit.schedule.model.GroupSchedule;
-import ua.goit.schedule.repository.DayScheduleRepository;
+import ua.goit.schedule.repository.DaySchedulesRepository;
 
 import java.time.DayOfWeek;
 import java.util.Collection;
@@ -12,31 +12,31 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class DayScheduleService implements BaseService<DaySchedule,Long>{
+public class DaySchedulesService implements BaseService<DaySchedule,Long>{
 
-    private final DayScheduleRepository dayScheduleRepository;
+    private final DaySchedulesRepository daySchedulesRepository;
 
     @Override
     public Collection<DaySchedule> findAll() {
-        return dayScheduleRepository.findAll();
+        return daySchedulesRepository.findAll();
     }
 
     @Override
     public Optional<DaySchedule> findById(Long id) {
-        return dayScheduleRepository.findById(id);
+        return daySchedulesRepository.findById(id);
     }
 
     @Override
     public DaySchedule save(DaySchedule daySchedule) {
-        return dayScheduleRepository.save(daySchedule);
+        return daySchedulesRepository.save(daySchedule);
     }
 
     @Override
     public void deleteById(Long id) {
-        dayScheduleRepository.deleteById(id);
+        daySchedulesRepository.deleteById(id);
     }
 
     public DaySchedule getDaySchedule(DayOfWeek dayOfWeekNumber, GroupSchedule groupSchedule) {
-        return dayScheduleRepository.getDaySchedule(dayOfWeekNumber, groupSchedule);
+        return daySchedulesRepository.getDaySchedule(dayOfWeekNumber, groupSchedule);
     }
 }

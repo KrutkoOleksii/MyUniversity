@@ -17,22 +17,22 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.Audience;
-import ua.goit.schedule.repository.AudienceRepository;
+import ua.goit.schedule.repository.AudiencesRepository;
 
-@ContextConfiguration(classes = {AudienceService.class})
+@ContextConfiguration(classes = {AudiencesService.class})
 @ExtendWith(SpringExtension.class)
-class AudienceServiceTest {
+class AudiencesServiceTest {
     @MockBean
-    private AudienceRepository audienceRepository;
+    private AudiencesRepository audiencesRepository;
 
     @Autowired
-    private AudienceService audienceService;
+    private AudiencesService audiencesService;
 
     @Test
     void testFindAll() {
-        when(this.audienceRepository.findAll()).thenReturn(null);
-        assertNull(this.audienceService.findAll());
-        verify(this.audienceRepository).findAll();
+        when(this.audiencesRepository.findAll()).thenReturn(null);
+        assertNull(this.audiencesService.findAll());
+        verify(this.audiencesRepository).findAll();
     }
 
     @Test
@@ -41,12 +41,12 @@ class AudienceServiceTest {
                 .id(123L)
                 .name("Name")
                 .build());
-        when(this.audienceRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<Audience> actualFindByIdResult = this.audienceService.findById(123L);
+        when(this.audiencesRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<Audience> actualFindByIdResult = this.audiencesService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.audienceRepository).findById((Long) any());
-        assertTrue(this.audienceService.findAll().isEmpty());
+        verify(this.audiencesRepository).findById((Long) any());
+        assertTrue(this.audiencesService.findAll().isEmpty());
     }
 
     @Test
@@ -55,23 +55,23 @@ class AudienceServiceTest {
                 .id(123L)
                 .name("Name")
                 .build();
-        when(this.audienceRepository.save((Audience) any())).thenReturn(audience);
+        when(this.audiencesRepository.save((Audience) any())).thenReturn(audience);
 
         Audience audience1 = Audience.builder()
                 .id(123L)
                 .name("Name")
                 .build();
-        assertSame(audience, this.audienceService.save(audience1));
-        verify(this.audienceRepository).save((Audience) any());
-        assertTrue(this.audienceService.findAll().isEmpty());
+        assertSame(audience, this.audiencesService.save(audience1));
+        verify(this.audiencesRepository).save((Audience) any());
+        assertTrue(this.audiencesService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.audienceRepository).deleteById((Long) any());
-        this.audienceService.deleteById(123L);
-        verify(this.audienceRepository).deleteById((Long) any());
-        assertTrue(this.audienceService.findAll().isEmpty());
+        doNothing().when(this.audiencesRepository).deleteById((Long) any());
+        this.audiencesService.deleteById(123L);
+        verify(this.audiencesRepository).deleteById((Long) any());
+        assertTrue(this.audiencesService.findAll().isEmpty());
     }
 }
 

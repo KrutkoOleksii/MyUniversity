@@ -17,22 +17,22 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ua.goit.schedule.model.StudyGroup;
-import ua.goit.schedule.repository.StudyGroupRepository;
+import ua.goit.schedule.repository.StudyGroupsRepository;
 
-@ContextConfiguration(classes = {StudyGroupService.class})
+@ContextConfiguration(classes = {StudyGroupsService.class})
 @ExtendWith(SpringExtension.class)
-class StudyGroupServiceTest {
+class StudyGroupsServiceTest {
     @MockBean
-    private StudyGroupRepository studyGroupRepository;
+    private StudyGroupsRepository studyGroupsRepository;
 
     @Autowired
-    private StudyGroupService studyGroupService;
+    private StudyGroupsService studyGroupsService;
 
     @Test
     void testFindAll() {
-        when(this.studyGroupRepository.findAll()).thenReturn(null);
-        assertNull(this.studyGroupService.findAll());
-        verify(this.studyGroupRepository).findAll();
+        when(this.studyGroupsRepository.findAll()).thenReturn(null);
+        assertNull(this.studyGroupsService.findAll());
+        verify(this.studyGroupsRepository).findAll();
     }
 
     @Test
@@ -42,12 +42,12 @@ class StudyGroupServiceTest {
         studyGroup.setName("Name");
         studyGroup.setStudents(null);
         Optional<StudyGroup> ofResult = Optional.of(studyGroup);
-        when(this.studyGroupRepository.findById((Long) any())).thenReturn(ofResult);
-        Optional<StudyGroup> actualFindByIdResult = this.studyGroupService.findById(123L);
+        when(this.studyGroupsRepository.findById((Long) any())).thenReturn(ofResult);
+        Optional<StudyGroup> actualFindByIdResult = this.studyGroupsService.findById(123L);
         assertSame(ofResult, actualFindByIdResult);
         assertTrue(actualFindByIdResult.isPresent());
-        verify(this.studyGroupRepository).findById((Long) any());
-        assertTrue(this.studyGroupService.findAll().isEmpty());
+        verify(this.studyGroupsRepository).findById((Long) any());
+        assertTrue(this.studyGroupsService.findAll().isEmpty());
     }
 
     @Test
@@ -56,23 +56,23 @@ class StudyGroupServiceTest {
         studyGroup.setId(123L);
         studyGroup.setName("Name");
         studyGroup.setStudents(null);
-        when(this.studyGroupRepository.save((StudyGroup) any())).thenReturn(studyGroup);
+        when(this.studyGroupsRepository.save((StudyGroup) any())).thenReturn(studyGroup);
 
         StudyGroup studyGroup1 = new StudyGroup();
         studyGroup1.setId(123L);
         studyGroup1.setName("Name");
         studyGroup1.setStudents(null);
-        assertSame(studyGroup, this.studyGroupService.save(studyGroup1));
-        verify(this.studyGroupRepository).save((StudyGroup) any());
-        assertTrue(this.studyGroupService.findAll().isEmpty());
+        assertSame(studyGroup, this.studyGroupsService.save(studyGroup1));
+        verify(this.studyGroupsRepository).save((StudyGroup) any());
+        assertTrue(this.studyGroupsService.findAll().isEmpty());
     }
 
     @Test
     void testDeleteById() {
-        doNothing().when(this.studyGroupRepository).deleteById((Long) any());
-        this.studyGroupService.deleteById(123L);
-        verify(this.studyGroupRepository).deleteById((Long) any());
-        assertTrue(this.studyGroupService.findAll().isEmpty());
+        doNothing().when(this.studyGroupsRepository).deleteById((Long) any());
+        this.studyGroupsService.deleteById(123L);
+        verify(this.studyGroupsRepository).deleteById((Long) any());
+        assertTrue(this.studyGroupsService.findAll().isEmpty());
     }
 }
 

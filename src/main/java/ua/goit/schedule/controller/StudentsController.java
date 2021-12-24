@@ -3,7 +3,7 @@ package ua.goit.schedule.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ua.goit.schedule.model.Student;
-import ua.goit.schedule.service.StudentService;
+import ua.goit.schedule.service.StudentsService;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -13,25 +13,25 @@ import java.util.Optional;
 @RequestMapping(value = "/students")
 public class StudentsController {
 
-    private final StudentService studentService;
+    private final StudentsService studentsService;
 
     @GetMapping(value = {"","/"})
     public Collection<Student> findAll(){
-        return studentService.findAll();
+        return studentsService.findAll();
     }
 
     @GetMapping(value = {"/{id}"})
     public Optional<Student> findById(@PathVariable Long id){
-        return studentService.findById(id);
+        return studentsService.findById(id);
     }
 
     @PostMapping(value = {"","/"})
     public Student save(@RequestBody Student student){
-        return studentService.save(student);
+        return studentsService.save(student);
     }
 
     @DeleteMapping(value = {"/{id}"})
     public void deleteById(@PathVariable Long id) {
-        studentService.deleteById(id);
+        studentsService.deleteById(id);
     }
 }
