@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/subject")
-public class SubjectController {
+@RequestMapping(value = "/subjects")
+public class SubjectsController {
 
     private final SubjectService subjectService;
 
@@ -25,7 +25,7 @@ public class SubjectController {
         return subjectService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public Subject save(@RequestBody Subject subject){
         return subjectService.save(subject);
     }

@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/audience")
-public class AudienceController {
+@RequestMapping(value = "/audiences")
+public class AudiencesController {
 
     private final AudienceService audienceService;
 

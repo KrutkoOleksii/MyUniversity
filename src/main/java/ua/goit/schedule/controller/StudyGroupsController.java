@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/group")
-public class StudyGroupController {
+@RequestMapping(value = "/groups")
+public class StudyGroupsController {
 
     private final StudyGroupService studyGroupService;
 
@@ -25,7 +25,7 @@ public class StudyGroupController {
         return studyGroupService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public StudyGroup save(@RequestBody StudyGroup studyGroup){
         return studyGroupService.save(studyGroup);
     }

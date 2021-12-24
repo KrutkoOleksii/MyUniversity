@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/lecture")
+@RequestMapping(value = "/lectures")
 public class LectureController {
 
     private final LectureService lectureService;
@@ -26,7 +26,7 @@ public class LectureController {
         return lectureService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public Lecture save(@RequestBody Lecture daySchedule){
         return lectureService.save(daySchedule);
     }
@@ -36,7 +36,7 @@ public class LectureController {
         lectureService.deleteById(id);
     }
 
-    @GetMapping(value = {"/day/{dayOfWeekNumber}/student/{studentId}"})
+    @GetMapping(value = {"/days/{dayOfWeekNumber}/students/{studentId}"})
     public Collection<Lecture> getSchedule(@PathVariable int dayOfWeekNumber, @PathVariable Long studentId){
         return lectureService.getSchedule(DayOfWeek.of(dayOfWeekNumber), studentId);
     }

@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/dayschedule")
-public class DayScheduleController {
+@RequestMapping(value = "/day-schedules")
+public class DaySchedulesController {
 
     private final DayScheduleService dayScheduleService;
 
@@ -25,7 +25,7 @@ public class DayScheduleController {
         return dayScheduleService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public DaySchedule save(@RequestBody DaySchedule daySchedule){
         return dayScheduleService.save(daySchedule);
     }

@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/professor")
-public class ProfessorController {
+@RequestMapping(value = "/professors")
+public class ProfessorsController {
 
     private final ProfessorService professorService;
 
@@ -25,7 +25,7 @@ public class ProfessorController {
         return professorService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public Professor save(@RequestBody Professor professor){
         return professorService.save(professor);
     }

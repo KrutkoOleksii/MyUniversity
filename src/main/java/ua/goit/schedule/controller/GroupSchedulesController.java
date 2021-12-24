@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/groupschedule")
-public class GroupScheduleController {
+@RequestMapping(value = "/group-schedules")
+public class GroupSchedulesController {
 
     private final GroupScheduleService groupScheduleService;
 
@@ -25,7 +25,7 @@ public class GroupScheduleController {
         return groupScheduleService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public GroupSchedule save(@RequestBody GroupSchedule groupSchedule){
         return groupScheduleService.save(groupSchedule);
     }
