@@ -25,7 +25,7 @@ public class AudiencesController {
         return audiencesService.findById(id);
     }
 
-    @PostMapping(value = {"/save"})
+    @PostMapping(value = {"","/"})
     public Audience save(@RequestBody Audience audience){
         return audiencesService.save(audience);
     }
