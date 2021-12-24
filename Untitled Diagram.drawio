@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-24T20:17:07.213Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15" etag="hRduf6BCh205AdqDXBL7" version="16.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-24T20:23:08.973Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15" etag="8jsbetkO1qhTGBy_EW6B" version="16.0.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="946" dy="564" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -166,7 +166,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="QOIhF5GQYa2GGl8REqSU-13" value="GroupSchedule" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="80" y="360" width="160" height="112" as="geometry">
+          <mxGeometry x="80" y="360" width="160" height="110" as="geometry">
             <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -235,7 +235,8 @@
             <mxPoint x="220" y="670" as="targetPoint" />
             <Array as="points">
               <mxPoint x="20" y="566" />
-              <mxPoint x="20" y="444" />
+              <mxPoint x="20" y="443" />
+              <mxPoint x="50" y="443" />
             </Array>
           </mxGeometry>
         </mxCell>
