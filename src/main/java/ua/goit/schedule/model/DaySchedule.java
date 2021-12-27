@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name="day_schedule")
 public class DaySchedule implements BaseEntity<Long>{
 
+    private static final long serialVersionUID = -7076114547164440731L;
     @Id
     @Column(name="id")
     private Long id;

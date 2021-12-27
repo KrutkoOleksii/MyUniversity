@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Table(name="student")
 public class Student implements BaseEntity<Long>{
 
+    private static final long serialVersionUID = 2103376223740044473L;
     @Id
     @Column(name="id")
     private Long id;

@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name="study_group")
 public class StudyGroup implements BaseEntity<Long>{
 
+    private static final long serialVersionUID = -361503220932482353L;
     @Id
     @Column(name="id")
     private Long id;

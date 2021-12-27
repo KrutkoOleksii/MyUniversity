@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name="group_schedule")
 public class GroupSchedule implements BaseEntity<Long>{
 
+    private static final long serialVersionUID = -3234857685302651832L;
     @Id
     @Column(name="id")
     private Long id;

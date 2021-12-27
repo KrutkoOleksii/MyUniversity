@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Table(name="person")
 public class Person implements BaseEntity<Long>{
 
+    private static final long serialVersionUID = -8479280006982232578L;
     @Id
     @Column(name="id")
     private Long id;
